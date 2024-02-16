@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
   outputs = { nixpkgs, ... }: {
     nixosConfigurations = {

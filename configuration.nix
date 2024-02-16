@@ -177,7 +177,6 @@
   environment.systemPackages = with pkgs; [
     htop
     gimp
-    onionshare-gui
     etcher
     unzip
     thunderbird
