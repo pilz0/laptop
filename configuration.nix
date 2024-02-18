@@ -235,6 +235,7 @@
     pavucontrol
     setserial
     wineWowPackages.wayland
+    cryptomator
     tor-browser
     gnome-themes-extra
     catppuccin-gtk
