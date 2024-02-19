@@ -149,7 +149,6 @@
   #  };
 
   #Services
-  #Printing
   #zsh
   programs.zsh.enable = true;
   programs.zsh.ohMyZsh.enable = true;
@@ -235,7 +234,6 @@
     pavucontrol
     setserial
     wineWowPackages.wayland
-    cryptomator
     tor-browser
     gnome-themes-extra
     catppuccin-gtk
