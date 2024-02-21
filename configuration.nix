@@ -254,16 +254,18 @@
     spotifyd
     brlaser
     pipes
+    catppuccin-gtk
     spotify-tui
     telegram-desktop
   ];
   services.spotifyd.enable = true;
-  #pkgs.catppuccin-gtk.override = {
-  #accent = "pink";
-  # size = "compact";
-  # tweak =  "rimless";
-  # variant = "macchiato";
-  # };
+
+  pkgs.catppuccin-gtk.override.accent = "pink";
+  pkgs.catppuccin-gtk.override.size = "compact";
+  pkgs.catppuccin-gtk.override.tweak =  "rimless";
+  pkgs.catppuccin-gtk.override.variant = "macchiato";
+
+  
 
   # OpenSSH Banner to fuck with ppl
   services.openssh.banner = "i hope your balls explode
