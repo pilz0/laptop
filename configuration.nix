@@ -8,7 +8,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #    ./gtk.nix
   ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -62,6 +61,7 @@
     isNormalUser = true;
     description = "marie";
     extraGroups = [ "networkmanager" "wheel" ];
+    initialPassword = "marie";
     packages = with pkgs; [
       firefox #idk why this is still here, move it to the other pkgs at some point
     ];
@@ -109,51 +109,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  #Razer stuff, not working yet
+  #Razer stuff
   hardware.openrazer.enable = true;
   hardware.openrazer.users = [ "marie" ];
-  #Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall =
-      false; # No remote play because security
-    dedicatedServer.openFirewall =
-      false; # # No remote play because security
-  };
-  #Snapcast
-  #  services.snapserver = {
-  #    enable = true;
-  #    codec = "flac";
-  #    streams = {
-  #      pipewire = {
-  #        type = "pipe";
-  #        location = "/run/snapserver/pipewire";
-  #      };
-  #    };
-  #  };
-
-  #  systemd.user.services.snapcast-sink = {
-  #    wantedBy = [ "pipewire.service" ];
-  #    after = [ "pipewire.service" ];
-  #    bindsTo = [ "pipewire.service" ];
-  #    path = with pkgs; [ gawk pulseaudio ];
-  #    script = ''
-  #      pactl load-module module-pipe-sink file=/run/snapserver/pipewire sink_name=Snapcast format=s16le rate=48000
-  #    '';
-  #  };
-
-  #  systemd.user.services.snapclient-local = {
-  #    wantedBy = [ "pipewire.service" ];
-  #    after = [ "pipewire.service" ];
-  #    serviceConfig = { ExecStart = "${pkgs.snapcast}/bin/snapclient -h ::1"; };
-  #  };
-
-  #Services
-  #zsh
-  programs.zsh.enable = true;
-  programs.zsh.ohMyZsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh.ohMyZsh.theme = "crunch";
   #Network manager
   networking.networkmanager.enable = true;
   #Gnome
@@ -163,6 +122,7 @@
   services.xserver.enable = true;
   #Mullvad VPN
   services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
   #Flakes
   nix = {
     package = pkgs.nixVersions.stable;
@@ -259,13 +219,8 @@
     telegram-desktop
   ];
   services.spotifyd.enable = true;
-
-  pkgs.catppuccin-gtk.override.accent = "pink";
-  pkgs.catppuccin-gtk.override.size = "compact";
-  pkgs.catppuccin-gtk.override.tweak =  "rimless";
-  pkgs.catppuccin-gtk.override.variant = "macchiato";
-
-  
+  #marie pls fix :3
+  #catppuccin-gtk.override.accents = "pink";
 
   # OpenSSH Banner to fuck with ppl
   services.openssh.banner = "i hope your balls explode
@@ -273,12 +228,75 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
-  programs.ssh.startAgent = true;
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ 8080 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  
+  #debloat 
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    epiphany
+    pkgs.gnome-console
+    gnome-contacts
+    gnome-logs
+    gnome-maps
+    pkgs.gnome-tour
+    simple-scan
+    yelp
+    geary
+  ];
+programs = {
+  #Steam
+  steam = {
+    enable = true;
+    remotePlay.openFirewall =
+      false; # No remote play because security
+    dedicatedServer.openFirewall =
+      false; # # No remote play because security
+  };
+  #Snapcast
+  #  services.snapserver = {
+  #    enable = true;
+  #    codec = "flac";
+  #    streams = {
+  #      pipewire = {
+  #        type = "pipe";
+  #        location = "/run/snapserver/pipewire";
+  #      };
+  #    };
+  #  };
+
+  #  systemd.user.services.snapcast-sink = {
+  #    wantedBy = [ "pipewire.service" ];
+  #    after = [ "pipewire.service" ];
+  #    bindsTo = [ "pipewire.service" ];
+  #    path = with pkgs; [ gawk pulseaudio ];
+  #    script = ''
+  #      pactl load-module module-pipe-sink file=/run/snapserver/pipewire sink_name=Snapcast format=s16le rate=48000
+  #    '';
+  #  };
+
+  #  systemd.user.services.snapclient-local = {
+  #    wantedBy = [ "pipewire.service" ];
+  #    after = [ "pipewire.service" ];
+  #    serviceConfig = { ExecStart = "${pkgs.snapcast}/bin/snapclient -h ::1"; };
+  #  };
+
+  #Services
+  #zsh
+  zsh.enable = true;
+  zsh.ohMyZsh.enable = true;
+  zsh.ohMyZsh.theme = "crunch";
+  ssh.startAgent = true;
+
+
+  #git  
+    git.config.user.name = "pilz0";
+    git.config.user.email = "marie0@riseup.net";
+};
+  
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
