@@ -146,7 +146,7 @@
     beeper
     qbittorrent
     openvpn3
-    signal-desktop
+    signal-desktop-beta
     zsh
     putty
     nmap
@@ -246,6 +246,7 @@
     yelp
     geary
   ];
+
 programs = {
   #Steam
   steam = {
