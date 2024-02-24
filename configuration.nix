@@ -79,22 +79,17 @@
 
   #Nvidia Stuff for my eGPU
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
-
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     powerManagement.enable = false;
     #Power mangement stuff for Turing or later
     powerManagement.finegrained = false;
-
     #Only for Turing or later
     open = false;
-
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
-
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     #Prime/eGPU 
@@ -104,7 +99,6 @@
       nvidiaBusId = "PCI:04:0:0";
       intelBusId = "PCI:0:2:0";
     };
-
   };
 
   # Allow unfree packages
@@ -112,7 +106,6 @@
   #Razer stuff
   hardware.openrazer.enable = true;
   hardware.openrazer.users = [ "marie" ];
-  users.defaultUserShell = pkgs.zsh;
   #Network manager
   networking.networkmanager.enable = true;
   #Gnome
@@ -215,13 +208,16 @@
     brlaser
     pipes
     catppuccin-gtk
+    catppuccin
     spotify-tui
     telegram-desktop
   ];
+  #spotifyd for spotify terminal
   services.spotifyd.enable = true;
   #marie pls fix :3
   #catppuccin-gtk.override.accents = "pink";
-
+  #ssh stuff 
+  programs.ssh.startAgent = true;
   # OpenSSH Banner to fuck with ppl
   services.openssh.banner = "i hope your balls explode
    ";
@@ -247,57 +243,24 @@
     geary
   ];
 
-programs = {
+
   #Steam
-  steam = {
-    enable = true;
-    remotePlay.openFirewall =
-      false; # No remote play because security
-    dedicatedServer.openFirewall =
-      false; # # No remote play because security
-  };
-  #Snapcast
-  #  services.snapserver = {
-  #    enable = true;
-  #    codec = "flac";
-  #    streams = {
-  #      pipewire = {
-  #        type = "pipe";
-  #        location = "/run/snapserver/pipewire";
-  #      };
-  #    };
-  #  };
-
-  #  systemd.user.services.snapcast-sink = {
-  #    wantedBy = [ "pipewire.service" ];
-  #    after = [ "pipewire.service" ];
-  #    bindsTo = [ "pipewire.service" ];
-  #    path = with pkgs; [ gawk pulseaudio ];
-  #    script = ''
-  #      pactl load-module module-pipe-sink file=/run/snapserver/pipewire sink_name=Snapcast format=s16le rate=48000
-  #    '';
-  #  };
-
-  #  systemd.user.services.snapclient-local = {
-  #    wantedBy = [ "pipewire.service" ];
-  #    after = [ "pipewire.service" ];
-  #    serviceConfig = { ExecStart = "${pkgs.snapcast}/bin/snapclient -h ::1"; };
-  #  };
+  programs.steam.enable = true;
 
   #Services
   #zsh
-  zsh.enable = true;
-  zsh.ohMyZsh.enable = true;
-  zsh.ohMyZsh.theme = "crunch";
-  ssh.startAgent = true;
+  programs.zsh.enable = true;
+  programs.zsh.ohMyZsh.enable = true;
+  programs.zsh.ohMyZsh.theme = "crunch";
+  programs.zsh.shellAliases = { backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";};
+  users.defaultUserShell = pkgs.zsh;
 
 
   #git  
-    git.config.user.name = "pilz0";
-    git.config.user.email = "marie0@riseup.net";
-};
-  
+    programs.git.config.user.name = "pilz0";
+    programs.git.config.user.email = "marie0@riseup.net";
 
+  
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
