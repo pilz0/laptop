@@ -211,6 +211,8 @@
     catppuccin
     spotify-tui
     telegram-desktop
+    picocom
+    dnsmasq
   ];
   #spotifyd for spotify terminal
   services.spotifyd.enable = true;
@@ -228,7 +230,7 @@
   networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ 8080 ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+ # networking.firewall.enable = false;
   
   #debloat 
   environment.gnome.excludePackages = with pkgs.gnome; [
