@@ -214,9 +214,6 @@
   ];
   #spotifyd for spotify terminal
   services.spotifyd.enable = true;
-  #marie pls fix :3
-  #ssh stuff 
-  programs.ssh.startAgent = true;
   # OpenSSH Banner to fuck with ppl
   services.openssh.banner = "i hope your balls explode
    ";
@@ -241,26 +238,30 @@
     yelp
     geary
   ];
+programs = {
+  #marie pls fix :3
+  #ssh stuff 
+  ssh.startAgent = true;
 
 
   #Steam
-  programs.steam.enable = true;
+  steam.enable = true;
 
   #Services
   #zsh
-  programs.zsh.enable = true;
-  programs.zsh.ohMyZsh.enable = true;
-  programs.zsh.ohMyZsh.theme = "crunch";
-  programs.zsh.shellAliases = { backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";};
-  programs.zsh.shellAliases = { update = "nix flake /home/marie/Dokumente/laptop update";};
-  programs.zsh.shellAliases = { rebuild = "sudo nixos-rebuild --flake /home/marie/Dokumente/laptop switch";};
-
-
-  users.defaultUserShell = pkgs.zsh;
+  zsh.enable = true;
+    zsh.ohMyZsh.enable = true;
+    zsh.ohMyZsh.theme = "crunch";
+    zsh.autosuggestions.enable = true;
+    zsh.shellAliases = { backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";};
+    zsh.shellAliases = { update = "nix flake /home/marie/Dokumente/laptop update";};
+    zsh.shellAliases = { rebuild = "sudo nixos-rebuild --flake /home/marie/Dokumente/laptop switch";};
 
   #git  
-    programs.git.config.user.name = "pilz0";
-    programs.git.config.user.email = "marie0@riseup.net";
+    git.config.user.name = "pilz0";
+    git.config.user.email = "marie0@riseup.net";
+};
+    users.defaultUserShell = pkgs.zsh;
 
 
   # This value determines the NixOS release from which the default
