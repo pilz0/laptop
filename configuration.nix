@@ -217,7 +217,6 @@
   #spotifyd for spotify terminal
   services.spotifyd.enable = true;
   #marie pls fix :3
-  #catppuccin-gtk.override.accents = "pink";
   #ssh stuff 
   programs.ssh.startAgent = true;
   # OpenSSH Banner to fuck with ppl
@@ -255,6 +254,10 @@
   programs.zsh.ohMyZsh.enable = true;
   programs.zsh.ohMyZsh.theme = "crunch";
   programs.zsh.shellAliases = { backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";};
+  programs.zsh.shellAliases = { update = "nix flake update";};
+  programs.zsh.shellAliases = { rebuild = "sudo nixos-rebuild --flake . switch";};
+
+
   users.defaultUserShell = pkgs.zsh;
 
 
@@ -262,7 +265,6 @@
     programs.git.config.user.name = "pilz0";
     programs.git.config.user.email = "marie0@riseup.net";
 
-  
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -270,6 +272,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
+  system.stateVersion = "23.11"; # Did you read the comment
 }
