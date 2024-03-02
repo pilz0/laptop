@@ -38,10 +38,8 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "de";
-    xkbVariant = "";
-  };
+  services.xserver.xkb.variant = "";
+  services.xserver.xkb.layout = "de";
 
   console.keyMap = "de";
   services.printing.enable = true;
@@ -259,7 +257,6 @@
 
 
   users.defaultUserShell = pkgs.zsh;
-
 
   #git  
     programs.git.config.user.name = "pilz0";
