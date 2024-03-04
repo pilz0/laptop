@@ -227,7 +227,7 @@
   networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ 8080 ];
   # Or disable the firewall altogether.
- # networking.firewall.enable = false;
+  # networking.firewall.enable = false;
   
   #debloat 
   environment.gnome.excludePackages = with pkgs.gnome; [
@@ -253,7 +253,7 @@
     programs.zsh.ohMyZsh.theme = "crunch";
     programs.zsh.autosuggestions.enable = true;
     programs.zsh.shellAliases = { backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";};
-    programs.zsh.shellAliases = { update = "nix flake /home/marie/Dokumente/laptop update";};
+    programs.zsh.shellAliases = { update = "nix flake update /home/marie/Dokumente/laptop ";};
     programs.zsh.shellAliases = { rebuild = "sudo nixos-rebuild --flake /home/marie/Dokumente/laptop switch";};
     users.defaultUserShell = pkgs.zsh;
   #git  
