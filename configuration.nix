@@ -253,7 +253,7 @@
     programs.zsh.ohMyZsh.theme = "crunch";
     programs.zsh.autosuggestions.enable = true;
     programs.zsh.shellAliases = { backup = "restic -r rclone:onedrive:/backup/server backup --verbose /home";};
-    programs.zsh.shellAliases = { update = "nix flake update /home/marie/Dokumente/laptop ";};
+    programs.zsh.shellAliases = { update = "sudo nix flake update /home/marie/Dokumente/laptop";};
     programs.zsh.shellAliases = { rebuild = "sudo nixos-rebuild --flake /home/marie/Dokumente/laptop switch";};
     users.defaultUserShell = pkgs.zsh;
   #git  
