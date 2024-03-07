@@ -154,7 +154,6 @@
     docker
     git
     vscode
-    yuzu
     libreoffice
     python3
     veracrypt
