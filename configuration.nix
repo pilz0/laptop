@@ -211,7 +211,7 @@
     dnsmasq
   ];
   #spotifyd for spotify terminal
-  services.spotifyd.enable = true;
+  #services.spotifyd.enable = true;
   #marie pls fix :3
   #ssh stuff 
   programs.ssh.startAgent = true;
