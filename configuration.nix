@@ -201,7 +201,6 @@
     python311Packages.pip
     gnome.gnome-tweaks
     vesktop
-    spotifyd
     brlaser
     pipes
     catppuccin-gtk
@@ -258,7 +257,9 @@
   #git  
     programs.git.config.user.name = "pilz0";
     programs.git.config.user.email = "marie0@riseup.net";
+  
 
+  
 
   environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE="1";
