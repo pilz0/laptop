@@ -205,7 +205,6 @@
     pipes
     catppuccin-gtk
     catppuccin
-    spotify-tui
     telegram-desktop
     picocom
     dnsmasq
