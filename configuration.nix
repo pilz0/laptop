@@ -14,10 +14,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   #Hostname
   networking.hostName = "framwok";
-  #@marie pls fix this 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-19.1.9"
-  ];
 
   #Self doxx UwU
   time.timeZone = "Europe/Berlin";
@@ -127,7 +123,6 @@
   environment.systemPackages = with pkgs; [
     htop
     gimp
-    etcher
     unzip
     thunderbird
     firefox
