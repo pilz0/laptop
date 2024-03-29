@@ -203,9 +203,12 @@
     telegram-desktop
     picocom
     dnsmasq
+    (catppuccin-gtk.override {
+    accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
+    tweaks = [ "rimless"]; # You can also specify multiple tweaks here
+    variant = "mocha";
+  })
   ];
-  #spotifyd for spotify terminal
-  #services.spotifyd.enable = true;
   #marie pls fix :3
   #ssh stuff 
   programs.ssh.startAgent = true;
@@ -216,7 +219,7 @@
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = false;
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 ];
   # networking.firewall.allowedUDPPorts = [ 8080 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -234,7 +237,6 @@
     geary
   ];
 
-
   #Steam
   programs.steam.enable = true;
 
@@ -250,10 +252,7 @@
     users.defaultUserShell = pkgs.zsh;
   #git  
     programs.git.config.user.name = "pilz0";
-    programs.git.config.user.email = "marie0@riseup.net";
-  
-
-  
+    programs.git.config.user.email = "marie0@riseup.net";  
 
   environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE="1";
